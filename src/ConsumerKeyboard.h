@@ -10,38 +10,58 @@
 
 #if defined(_USING_HID)
 
-// Consumer Control Keys
+// Cpnsumer keys, taken from TinyUSB
 // Power Control
-#define CONSUMER_POWER                         0x0030
-#define CONSUMER_RESET                         0x0031
-#define CONSUMER_SLEEP                         0x0032
+#define KEY_POWER                              0x0030
+#define KEY_RESET                              0x0031
+#define KEY_SLEEP                              0x0032
 
 // Screen Brightness
-#define CONSUMER_BRIGHTNESS_UP                 0x006F
-#define CONSUMER_BRIGHTNESS_DOWN               0x0070
+#define KEY_BRIGHTNESS_INCREMENT               0x006F
+#define KEY_BRIGHTNESS_DECREMENT               0x0070
+
+// These HID usages operate only on mobile systems (battery powered) and
+// require Windows 8 (build 8302 or greater).
+#define KEY_WIRELESS_RADIO_CONTROLS            0x000C
+#define KEY_WIRELESS_RADIO_BUTTONS             0x00C6
+#define KEY_WIRELESS_RADIO_LED                 0x00C7
+#define KEY_WIRELESS_RADIO_SLIDER_SWITCH       0x00C8
 
 // Media Control
-#define CONSUMER_PLAY_PAUSE                    0x00CD
-#define CONSUMER_SCAN_NEXT                     0x00B5
-#define CONSUMER_SCAN_PREVIOUS                 0x00B6
-#define CONSUMER_STOP                          0x00B7
-#define CONSUMER_VOLUME                        0x00E0
-#define CONSUMER_MUTE                          0x00E2
-#define CONSUMER_VOLUME_UP                     0x00E9
-#define CONSUMER_VOLUME_DOWN                   0x00EA
+#define KEY_PLAY_PAUSE                         0x00CD
+#define KEY_SCAN_NEXT                          0x00B5
+#define KEY_SCAN_PREVIOUS                      0x00B6
+#define KEY_STOP                               0x00B7
+#define KEY_VOLUME                             0x00E0
+#define KEY_MUTE                               0x00E2
+#define KEY_BASS                               0x00E3
+#define KEY_TREBLE                             0x00E4
+#define KEY_BASS_BOOST                         0x00E5
+#define KEY_VOLUME_INCREMENT                   0x00E9
+#define KEY_VOLUME_DECREMENT                   0x00EA
+#define KEY_BASS_INCREMENT                     0x0152
+#define KEY_BASS_DECREMENT                     0x0153
+#define KEY_TREBLE_INCREMENT                   0x0154
+#define KEY_TREBLE_DECREMENT                   0x0155
 
-// Application Control
-#define CONSUMER_EMAIL                         0x018A
-#define CONSUMER_CALCULATOR                    0x0192
-#define CONSUMER_BROWSER                       0x0194
+// Application Launcher
+#define KEY_AL_CONSUMER_CONTROL_CONFIGURATION  0x0183
+#define KEY_AL_EMAIL_READER                    0x018A
+#define KEY_AL_CALCULATOR                      0x0192
+#define KEY_AL_LOCAL_BROWSER                   0x0194
 
-// Browser Control
-#define CONSUMER_SEARCH                        0x0221
-#define CONSUMER_HOME                          0x0223
-#define CONSUMER_BACK                          0x0224
-#define CONSUMER_FORWARD                       0x0225
-#define CONSUMER_REFRESH                       0x0227
-#define CONSUMER_BOOKMARKS                     0x022A
+// Browser/Explorer Specific
+#define KEY_AC_SEARCH                          0x0221
+#define KEY_AC_HOME                            0x0223
+#define KEY_AC_BACK                            0x0224
+#define KEY_AC_FORWARD                         0x0225
+#define KEY_AC_STOP                            0x0226
+#define KEY_AC_REFRESH                         0x0227
+#define KEY_AC_BOOKMARKS                       0x022A
+
+// Mouse Horizontal scroll
+#define KEY_AC_PAN                             0x0238
+
 
 class ConsumerKeyboard_ : public Keyboard_
 {

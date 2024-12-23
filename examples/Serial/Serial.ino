@@ -10,7 +10,7 @@
   the user to send any key to the keyboard.
 */
 
-#include "Keyboard.h"
+#include "ConsumerKeyboard.h"
 
 void setup() {
   Serial.begin(115200);

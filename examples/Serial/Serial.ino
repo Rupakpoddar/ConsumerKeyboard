@@ -11,6 +11,7 @@
 */
 
 #include "ConsumerKeyboard.h"
+#include "Keyboard.h"
 
 void setup() {
   Serial.begin(115200);
@@ -19,7 +20,8 @@ void setup() {
   Serial.println("Consumer Keyboard Emulator");
   Serial.println("Type u, d, m to control volume.");
   // initialize control over the keyboard:
-  ConsumerKeyboard.begin();
+  Keyboard.begin();
+  // ConsumerKeyboard does not need to be initialized
   delay(5000);
 }
 
@@ -42,7 +44,7 @@ void loop() {
           send_key(KEY_MUTE);
           break;
         default:
-          ConsumerKeyboard.write(inChar);
+          Keyboard.write(inChar);
           break;
       }
     }
@@ -50,7 +52,7 @@ void loop() {
 }
 
 
-void write_key(uint16_t key) {
-  ConsumerKeyboard.consumerPress(key);
-  ConsumerKeyboard.consumerRelease();
+void send_key(uint16_t key) {
+  ConsumerKeyboard.press(key);
+  ConsumerKeyboard.release();
 }

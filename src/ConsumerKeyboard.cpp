@@ -1,14 +1,10 @@
-/*
-  ConsumerKeyboard.cpp
-  Extends the Arduino Keyboard library with consumer control functionality
-*/
-
+// ConsumerKeyboard.cpp
 #include "ConsumerKeyboard.h"
 
 #if defined(_USING_HID)
 
 static const uint8_t _hidConsumerReportDescriptor[] PROGMEM = {
-    // Consumer Control
+    // Consumer Control only
     0x05, 0x0C,                    // USAGE_PAGE (Consumer Devices)
     0x09, 0x01,                    // USAGE (Consumer Control)
     0xA1, 0x01,                    // COLLECTION (Application)
@@ -23,33 +19,31 @@ static const uint8_t _hidConsumerReportDescriptor[] PROGMEM = {
     0xc0                           // END_COLLECTION
 };
 
-ConsumerKeyboard_::ConsumerKeyboard_(void) : Keyboard_()
+ConsumerKeyboard_::ConsumerKeyboard_(void)
 {
     static HIDSubDescriptor node(_hidConsumerReportDescriptor, sizeof(_hidConsumerReportDescriptor));
     HID().AppendDescriptor(&node);
 }
 
-void ConsumerKeyboard_::sendConsumerReport(uint16_t k)
+void ConsumerKeyboard_::begin(void)
+{
+}
+
+void ConsumerKeyboard_::sendReport(uint16_t k)
 {
     HID().SendReport(3, &k, sizeof(k));
 }
 
-size_t ConsumerKeyboard_::consumerPress(uint16_t k)
+size_t ConsumerKeyboard_::press(uint16_t k)
 {
-    sendConsumerReport(k);
+    sendReport(k);
     return 1;
 }
 
-size_t ConsumerKeyboard_::consumerRelease()
+size_t ConsumerKeyboard_::release(void)
 {
-    sendConsumerReport(0);
+    sendReport(0);
     return 1;
-}
-
-void ConsumerKeyboard_::releaseAll(void)
-{
-    Keyboard_::releaseAll();  // Call parent class releaseAll
-    sendConsumerReport(0);    // Release consumer keys
 }
 
 ConsumerKeyboard_ ConsumerKeyboard;

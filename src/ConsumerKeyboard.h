@@ -6,7 +6,7 @@
 #ifndef CONSUMER_KEYBOARD_h
 #define CONSUMER_KEYBOARD_h
 
-#include "Keyboard.h"
+#include "HID.h"
 
 #if defined(_USING_HID)
 
@@ -63,17 +63,16 @@
 #define KEY_AC_PAN                             0x0238
 
 
-class ConsumerKeyboard_ : public Keyboard_
+class ConsumerKeyboard_
 {
 private:
-    void sendConsumerReport(uint16_t k);
+    void sendReport(uint16_t k);
 
 public:
     ConsumerKeyboard_(void);
-    size_t consumerPress(uint16_t k);
-    size_t consumerRelease();
-    // Override releaseAll to also release consumer keys
-    void releaseAll(void);
+    void begin(void);
+    size_t press(uint16_t k);
+    size_t release(void);
 };
 
 extern ConsumerKeyboard_ ConsumerKeyboard;

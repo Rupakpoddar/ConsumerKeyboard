@@ -12,13 +12,8 @@ ConsumerKeyboard	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-begin	        KEYWORD2
-write	        KEYWORD2
 press	        KEYWORD2
-consumerPress   KEYWORD2
 release	        KEYWORD2
-consumerRelease KEYWORD2
-releaseAll	    KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

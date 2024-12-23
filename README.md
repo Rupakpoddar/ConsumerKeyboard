@@ -1,2 +1,2 @@
 # ConsumerKeyboard
-Allow Consumer Device keys on Arduino's Keyboard library
+Allow Consumer Device keys using Arduino HID library

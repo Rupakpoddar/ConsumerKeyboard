@@ -3,14 +3,16 @@
   Extends the Arduino Keyboard library with consumer control functionality
 */
 
-#ifndef CONSUMER_KEYBOARD_h
-#define CONSUMER_KEYBOARD_h
+#ifndef CONSUMER_KEYBOARD_H
+#define CONSUMER_KEYBOARD_H
 
 #include "HID.h"
 
 #if defined(_USING_HID)
 
-// Cpnsumer keys, taken from TinyUSB
+// Generic Control
+#define HID_USAGE_CONSUMER_CONTROL             0x0001
+
 // Power Control
 #define KEY_POWER                              0x0030
 #define KEY_RESET                              0x0031
@@ -19,13 +21,6 @@
 // Screen Brightness
 #define KEY_BRIGHTNESS_INCREMENT               0x006F
 #define KEY_BRIGHTNESS_DECREMENT               0x0070
-
-// These HID usages operate only on mobile systems (battery powered) and
-// require Windows 8 (build 8302 or greater).
-#define KEY_WIRELESS_RADIO_CONTROLS            0x000C
-#define KEY_WIRELESS_RADIO_BUTTONS             0x00C6
-#define KEY_WIRELESS_RADIO_LED                 0x00C7
-#define KEY_WIRELESS_RADIO_SLIDER_SWITCH       0x00C8
 
 // Media Control
 #define KEY_PLAY_PAUSE                         0x00CD

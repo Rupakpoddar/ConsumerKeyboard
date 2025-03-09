@@ -65,7 +65,6 @@ private:
 
 public:
     ConsumerKeyboard_(void);
-    void begin(void);
     size_t press(uint16_t k);
     size_t release(void);
 };

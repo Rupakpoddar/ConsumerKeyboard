@@ -1,21 +1,4 @@
-#######################################
-# Syntax Coloring Map For Keyboard
-#######################################
+ConsumerKeyboard  KEYWORD1
 
-#######################################
-# Datatypes (KEYWORD1)
-#######################################
-
-ConsumerKeyboard	KEYWORD1
-
-#######################################
-# Methods and Functions (KEYWORD2)
-#######################################
-
-press	        KEYWORD2
-release	        KEYWORD2
-
-#######################################
-# Constants (LITERAL1)
-#######################################
-
+press             KEYWORD2
+release           KEYWORD2

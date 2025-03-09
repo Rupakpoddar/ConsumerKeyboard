@@ -1,56 +1,62 @@
 /*
   Consumer Keyboard Emulator
-  Created by: @truth129
+  --------------------------
+  
+  Functionality:
+    Initializes both standard keyboard and consumer HID interfaces
+    Listens for serial input (u=volume up, d=volume down, m=mute)
+    Sends consumer control reports for media keys
 
-  This example code is in the public domain.
-
-  This library allows you to control volume, mute, and other
-  consumer control keys on a keyboard on the renesas and other arm
-  based microcontrollers using the inbuilt Keyboard. It also allows
-  the user to send any key to the keyboard.
+  Usage:
+    Open serial monitor at 9600 baud
+    Send commands:
+      u : Volume up
+      d : Volume down
+      m : Mute toggle
+  
+  Reprogramming Arduino Uno R4:
+    Double-press the reset button to enter download mode
+    (Built-in LED will fade in and out)
+    Re-select the port and upload new code
 */
 
-#include "ConsumerKeyboard.h"
 #include "Keyboard.h"
+#include "ConsumerKeyboard.h"
 
 void setup() {
-  Serial.begin(115200);
-
+  Serial.begin(9600);
+  Keyboard.begin();
   delay(2000);
+
   Serial.println("Consumer Keyboard Emulator");
   Serial.println("Type u, d, m to control volume.");
-  // initialize control over the keyboard:
-  Keyboard.begin();
-  // ConsumerKeyboard does not need to be initialized
-  delay(5000);
 }
 
 void loop() {
-  // check for incoming serial data:
-    if (Serial.available() > 0) {
-      // read incoming serial data:
-      char inChar = Serial.read();
-      switch (inChar) {
-        case 'u':
-          Serial.println("volume up");
-          send_key(KEY_VOLUME_INCREMENT);
-          break;
-        case 'd':
-          Serial.println("volume down");
-          send_key(KEY_VOLUME_DECREMENT);
-          break;
-        case 'm':
-          Serial.println("mute");
-          send_key(KEY_MUTE);
-          break;
-        default:
-          Keyboard.write(inChar);
-          break;
-      }
+  // Check for incoming serial data:
+  if (Serial.available() > 0) {
+    // Read incoming serial data:
+    char inChar = Serial.read();
+    switch (inChar) {
+      case 'u':
+        Serial.println("Volume Up");
+        send_key(KEY_VOLUME_INCREMENT);
+        break;
+      case 'd':
+        Serial.println("Volume Down");
+        send_key(KEY_VOLUME_DECREMENT);
+        break;
+      case 'm':
+        Serial.println("Mute");
+        send_key(KEY_MUTE);
+        break;
+      default:
+        Keyboard.write(inChar);
+        break;
     }
-    delay(10);
+  }
+  delay(10);
 }
-
 
 void send_key(uint16_t key) {
   ConsumerKeyboard.press(key);
